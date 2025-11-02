@@ -809,6 +809,89 @@ app.listen(5000, () => console.log('Server on 5000'))
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4)
+Type 4 : API data parsing
+
+import { useState } from 'react'
+
+export default function App() {
+  const students = [
+    { id: 1, name: 'Amit', age: 20, course: 'React', grade: 'A' },
+    { id: 2, name: 'Priya', age: 22, course: 'Node.js', grade: 'B+' },
+    { id: 3, name: 'Rohan', age: 19, course: 'MongoDB', grade: 'A-' },
+    { id: 4, name: 'Sneha', age: 21, course: 'React', grade: 'A+' },
+  ]
+
+  const [filter, setFilter] = useState('All')
+
+  const filtered = filter === 'All' 
+    ? students 
+    : students.filter(s => s.course === filter)
+
+  return (
+    <div style={{ padding: 20, fontFamily: 'sans-serif' }}>
+      <h2>Student Dashboard</h2>
+
+      <div style={{ marginBottom: 20 }}>
+        <button onClick={() => setFilter('All')}>All</button>
+        <button onClick={() => setFilter('React')}>React</button>
+        <button onClick={() => setFilter('Node.js')}>Node.js</button>
+        <button onClick={() => setFilter('MongoDB')}>MongoDB</button>
+        <span style={{ marginLeft: 10 }}>
+          Showing: <b>{filtered.length}</b> students
+        </span>
+      </div>
+
+      <div style={{ display: 'grid', gap: 15 }}>
+        {filtered.map(student => (
+          <div 
+            key={student.id}
+            style={{
+              border: '2px solid #333',
+              padding: 15,
+              borderRadius: 8,
+              backgroundColor: '#f9f9f9'
+            }}
+          >
+            <h3>{student.name}</h3>
+            <p>Age: {student.age}</p>
+            <p>Course: <strong>{student.course}</strong></p>
+            <p>Grade: <span style={{ color: 'green', fontWeight: 'bold' }}>
+              {student.grade}
+            </span></p>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ marginTop: 30, fontWeight: 'bold' }}>
+        Total Students: {students.length} | 
+        React Learners: {students.filter(s => s.course === 'React').length}
+      </div>
+    </div>
+  )
+}
+
 */
 
 
